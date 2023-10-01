@@ -1,0 +1,41 @@
+class MyLinkedList {
+public:
+    struct ListNode {
+        int val;
+        ListNode* next;
+        ListNode(int x) : val(x), next(nullptr) {}
+    };
+    
+    ListNode* head;
+
+    MyLinkedList() {
+        head = nullptr;
+    }
+
+    void addAtHead(int val) {
+        ListNode* newNode = new ListNode(val);
+        newNode->next = head;
+        head = newNode;
+    }
+
+    void print() {
+        ListNode* current = head;
+        while (current != nullptr) {
+            cout << current->val << " ";
+            current = current->next;
+        }
+        cout << endl;
+    }
+
+    void reverse() {
+        ListNode* prev = nullptr;
+        ListNode* current = head;
+        while (current != nullptr) {
+            ListNode* nextTemp = current->next;
+            current->next = prev;
+            prev = current;
+            current = nextTemp;
+        }
+        head = prev;
+    }
+};
